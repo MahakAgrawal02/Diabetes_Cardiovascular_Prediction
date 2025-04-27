@@ -1,0 +1,13 @@
+streamlit
+numpy
+pandas
+scikit-learn
+xgboost
+joblib
+# Removing problematic packages
+# cuml
+# pickle5
+pip==25.0.1
+setuptools>=70.0.0
+wheel>=0.43.0
+

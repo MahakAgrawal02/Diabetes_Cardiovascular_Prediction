@@ -1,0 +1,121 @@
+/* Dark Mode CSS */
+:root {
+    --background-color: #1e1e1e;
+    --text-color: #f0f0f0;
+    --accent-color: #3498db;
+    --card-bg: #2d2d2d;
+    --card-border: #3d3d3d;
+    --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    --hover-bg: #373737;
+    --button-bg: #3498db;
+    --button-text: white;
+    --success-bg: #204d2e;
+    --success-color: #aedfc1;
+  }
+  
+  body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+  }
+  
+  h1, h2, h3 {
+    font-weight: 600;
+  }
+  
+  h1 {
+    color: var(--accent-color);
+  }
+  
+  h2 {
+    border-bottom: 2px solid var(--accent-color);
+    padding-bottom: 8px;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    display: inline-block;
+  }
+  
+  /* Cards */
+  .disease-card {
+    background-color: var(--card-bg);
+    border-radius: 10px;
+    border: 1px solid var(--card-border);
+    padding: 20px;
+    height: 100%;
+    box-shadow: var(--card-shadow);
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+  
+  .disease-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+    background-color: var(--hover-bg);
+  }
+  
+  .disease-card.selected {
+    border: 2px solid var(--accent-color);
+    background-color: var(--hover-bg);
+  }
+  
+  .card-icon {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    margin-bottom: 15px;
+  }
+  
+  .card-title {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+    color: var(--accent-color);
+  }
+  
+  /* Header */
+  .header {
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--card-border);
+  }
+  
+  /* Custom button */
+  .stButton > button {
+    background-color: var(--button-bg);
+    color: var(--button-text);
+    font-weight: bold;
+    padding: 12px 24px;
+    border-radius: 30px;
+    border: none;
+    transition: all 0.3s ease;
+  }
+  
+  .stButton > button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+  }
+  
+  /* Footer */
+  .footer {
+    margin-top: 50px;
+    text-align: center;
+    padding: 20px;
+    font-size: 0.8rem;
+    color: var(--text-color);
+    opacity: 0.7;
+    border-top: 1px solid var(--card-border);
+  }
+  
+  /* Success message */
+  .element-container div[data-testid="stAlert"] {
+    background-color: var(--success-bg);
+    color: var(--success-color);
+    border-radius: 8px;
+    padding: 10px 20px;
+    margin: 20px 0;
+    border-left: 5px solid #28a745;
+  }
+  
+  /* Hide Streamlit elements */
+  #MainMenu {display: none;}
+  header {visibility: hidden;}
+  footer {visibility: hidden;}
