@@ -1,4 +1,4 @@
-# HealthGuard AI
+# Final-Year-Project
 
 ## Demo video
 <video width="100%" controls>
