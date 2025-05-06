@@ -5,7 +5,7 @@ import os
 
 # Initialize session state
 if 'theme' not in st.session_state:
-    st.session_state.theme = 'light'
+    st.session_state.theme = 'dark'
 if 'selected_module' not in st.session_state:
     st.session_state.selected_module = None
 
@@ -42,13 +42,13 @@ css = f"""
 <style>
     /* Base Styles */
     :root {{
-        --background-color: {('#ffffff' if theme == 'light' else '#1e1e1e')};
-        --text-color: {('#333333' if theme == 'light' else '#f0f0f0')};
+        --background-color: {('#1e1e1e' if theme == 'dark' else '#ffffff')};
+        --text-color: {('#f0f0f0' if theme == 'dark' else '#333333')};
         --accent-color: #3498db;
-        --card-bg: {('#f8f9fa' if theme == 'light' else '#2d2d2d')};
-        --card-border: {('#e6e6e6' if theme == 'light' else '#3d3d3d')};
-        --card-shadow: {('0 4px 6px rgba(0, 0, 0, 0.1)' if theme == 'light' else '0 4px 6px rgba(0, 0, 0, 0.3)')};
-        --hover-bg: {('#e9f7fe' if theme == 'light' else '#373737')};
+        --card-bg: {('#2d2d2d' if theme == 'dark' else '#f8f9fa')};
+        --card-border: {('#3d3d3d' if theme == 'dark' else '#e6e6e6')};
+        --card-shadow: {('0 4px 6px rgba(0, 0, 0, 0.3)' if theme == 'dark' else '0 4px 6px rgba(0, 0, 0, 0.1)')};
+        --hover-bg: {('#373737' if theme == 'dark' else '#e9f7fe')};
         --button-bg: #3498db;
         --button-text: white;
     }}
@@ -261,21 +261,34 @@ if st.session_state.selected_module:
     st.success(f"✅ You've selected the {st.session_state.selected_module.title()} Risk Module")
 
 # Launch Button - Using Markdown for custom styling
-st.markdown(f"""
-<button class="launch-button" onclick="
-    const launchBtn = window.parent.document.querySelector('button[data-testid=\\"launch-button\\"]');
-    if (launchBtn) {{ launchBtn.click(); }}
-">
-    Launch {st.session_state.selected_module.title() if st.session_state.selected_module else "Selected"} Module 🚀
-</button>
-""", unsafe_allow_html=True)
+# st.markdown(f"""
+# <div style="text-align: center; margin: 20px 0;">
+#     <button class="launch-button" onclick="
+#         const launchBtn = window.parent.document.querySelector('button[data-testid=\\"launch-button\\"]');
+#         if (launchBtn) {{ launchBtn.click(); }}
+#     ">
+#         🚀 Launch {st.session_state.selected_module.title() if st.session_state.selected_module else "Selected"} Module
+#     </button>
+# </div>
+# """, unsafe_allow_html=True)
 
-# Hidden launch button for JavaScript to click
-if st.button("Launch", key="launch-button", help="Launch Selected Module"):
+# Remove custom HTML/JS launch button and use only Streamlit button
+# Initialize session state for launch
+if 'launch' not in st.session_state:
+    st.session_state.launch = False
+
+# Show the launch button only if a module is selected
+if st.session_state.selected_module:
+    if st.button(f"🚀 Launch {st.session_state.selected_module.title()} Module", key="launch-button", help="Launch Selected Module"):
+        st.session_state.launch = True
+
+# Launch logic
+if st.session_state.launch:
     if st.session_state.selected_module == 'diabetes':
         os.system("streamlit run diabetes_app.py")
     elif st.session_state.selected_module == 'cardio':
         os.system("streamlit run cardiovascular_app.py")
+    st.session_state.launch = False  # Reset after launching
 
 # Features section
 st.markdown("## ✨ Key Features")
